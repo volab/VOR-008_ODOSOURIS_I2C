@@ -1,5 +1,15 @@
-//Entete VOR
-
+/*
+#*******************************************************************************
+# Projet : VOR008
+# Sous projet : dialogue IIC module capteur odo
+#
+# Auteurs: MajorLee
+#
+# Parie esclave
+# licence CC-BY-CA
+#
+#*******************************************************************************
+*/
 #include <Arduino.h>
 #include <Wire.h>
 
