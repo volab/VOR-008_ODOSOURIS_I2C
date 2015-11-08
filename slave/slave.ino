@@ -1,5 +1,4 @@
-/*
-#*******************************************************************************
+/*******************************************************************************
 # Projet : VOR008
 # Sous projet : dialogue IIC module capteur odo
 #
@@ -21,7 +20,6 @@
 void IIChandlerRec(int);
 void requestEvent(void);
 
-
 boolean recReq = false;
 boolean emet = false;
 byte registres[] = { 0x1C,
@@ -31,9 +29,6 @@ byte registres[] = { 0x1C,
     0x35, 0x36, 0x37, 0x38,
     0xF9};
 byte regAdd = 0;
-
-
-
 
 void setup()
 {
@@ -51,35 +46,9 @@ void loop()
 	digitalWrite(13, HIGH);   // set the LED on
 	delay(200);              // wait for a second
 	digitalWrite(13, LOW);    // set the LED off
-//	if (Wire.available()){
-//        Serial.print("Recu");
-//        Wire.read();
-//	}
-/*
-	if (recReq) {
-        Serial.print("Adresse recue = ");Serial.println(regAdd, HEX);
-        recReq = false;
-	}
-	*/
-//	if (emet){
-//        Serial.println("emet");
-//        emet = false;
-//	}
-}
-
-/*
-void IIChandlerRec(int combien){
-    Serial.print(combien);Serial.println(" octet recue");
-    recReq = true;
-    if (Wire.available()) regAdd = Wire.read();
 
 }
-*/
 
 void requestEvent(void){
-//    Serial.println("emission");
         Wire.write(registres, sizeof(registres));
-//    Wire.write("h");
-//    Serial.print("regAdd = ");Serial.print(regAdd);
-//    emet = true;
 }
