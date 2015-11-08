@@ -24,7 +24,12 @@ void requestEvent(void);
 
 boolean recReq = false;
 boolean emet = false;
-byte registres[] = { 0x1C, 0x34, 0x20, 0X21, 0x5B};
+byte registres[] = { 0x1C,
+    0x34, 0x20, 0X21, 0x5B,
+    0x00, 0x01, 0x10, 0x12,
+    0x20, 0x21, 0x22, 0x23,
+    0x35, 0x36, 0x37, 0x38,
+    0xF9};
 byte regAdd = 0;
 
 
@@ -35,7 +40,7 @@ void setup()
 	Serial.begin(115200);
     Serial.println("IIC Slave");
 	Wire.begin(0x05);
-	Wire.onReceive(IIChandlerRec);
+	//Wire.onReceive(IIChandlerRec);
 	Wire.onRequest(requestEvent);
 	pinMode(13, OUTPUT);
 }
@@ -50,27 +55,30 @@ void loop()
 //        Serial.print("Recu");
 //        Wire.read();
 //	}
+/*
 	if (recReq) {
         Serial.print("Adresse recue = ");Serial.println(regAdd, HEX);
         recReq = false;
 	}
+	*/
 //	if (emet){
 //        Serial.println("emet");
 //        emet = false;
 //	}
 }
 
-
+/*
 void IIChandlerRec(int combien){
     Serial.print(combien);Serial.println(" octet recue");
     recReq = true;
     if (Wire.available()) regAdd = Wire.read();
 
 }
+*/
 
 void requestEvent(void){
 //    Serial.println("emission");
-        Wire.write(registres, 3);
+        Wire.write(registres, sizeof(registres));
 //    Wire.write("h");
 //    Serial.print("regAdd = ");Serial.print(regAdd);
 //    emet = true;
