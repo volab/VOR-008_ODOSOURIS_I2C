@@ -17,7 +17,6 @@
 //SDA A4
 //SCL A5
 
-void IIChandlerRec(int);
 void requestEvent(void);
 
 boolean recReq = false;
