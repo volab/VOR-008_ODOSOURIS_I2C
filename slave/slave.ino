@@ -13,6 +13,7 @@
 // Pour memoire
 //SDA A4
 //SCL A5
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "ADNS2610.h"
@@ -27,6 +28,8 @@
 #define SDIOd 2                       // Serial data (I/O) pin on the Arduino
 //Ajouter capteur gauche
 
+//PB0 PIN8
+#define INSTRUMPIN 8
 
 /*******************************************************************************
  Gestionnaire d'événements
@@ -46,6 +49,8 @@ ADNS2610 capteurDroit = ADNS2610(SCLKd, SDIOd);
 odoRegisters mesRegistres;
 
 int c = 0;
+uint8_t portReg, pinBitMask;
+volatile uint8_t *portAdd;
 
 void setup()
 {
@@ -54,11 +59,19 @@ void setup()
 	Wire.begin(mouseOdometerI2Cadd);
 	Wire.onRequest(requestEvent);
 	pinMode(13, OUTPUT);
+	pinMode( INSTRUMPIN, OUTPUT);
 	registres = mesRegistres.getRegBankStartAdd();
+	portReg = digitalPinToPort(INSTRUMPIN);
+	portAdd = portOutputRegister(portReg);
+	Serial.print("Port de la pine 8 = ");Serial.println(portReg);
+	pinBitMask = digitalPinToBitMask(INSTRUMPIN);
+	Serial.print("bit de la pin 8 = ");Serial.println(pinBitMask);
 }
 
 void loop()
 {
+    *portAdd ^= pinBitMask;
+    //PORTB ^= (1<<0);
     dxd += capteurDroit.dx();
     dyd += capteurDroit.dy();
     if (trameLue){
