@@ -4,7 +4,7 @@
 #
 # Auteurs: MajorLee
 #
-# Parie maitre
+# Partie maitre
 # licence CC-BY-CA
 #
 #*******************************************************************************

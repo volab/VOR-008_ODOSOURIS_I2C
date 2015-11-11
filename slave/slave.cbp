@@ -651,6 +651,12 @@
 		<Compiler>
 			<Add directory="." />
 		</Compiler>
+		<Unit filename="ADNS2610.cpp" />
+		<Unit filename="ADNS2610.h" />
+		<Unit filename="OdoRegisters.cpp" />
+		<Unit filename="OdoRegisters.h" />
+		<Unit filename="OptiMouse.cpp" />
+		<Unit filename="OptiMouse.h" />
 		<Unit filename="slave.ino">
 			<Option compile="1" />
 			<Option link="1" />

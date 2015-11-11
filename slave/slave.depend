@@ -1,7 +1,9 @@
 # depslib dependency file v1.0
-1446577813 source:c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\slave.ino
+1447253916 source:c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\slave.ino
 	<Arduino.h>
 	<Wire.h>
+	"ADNS2610.h"
+	"OdoRegisters.h"
 
 1371029502 c:\mountwd\00-outils\06-conceptiondeveloppement\arduino\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\arduino.h
 	<stdlib.h>
@@ -79,4 +81,27 @@
 
 1434539290 c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\twi.h
 	<inttypes.h>
+
+1252245758 source:c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\adns2610.cpp
+	"OptiMouse.h"
+	"ADNS2610.h"
+
+1442953876 c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\optimouse.h
+	<inttypes.h>
+
+1252245760 c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\adns2610.h
+	<inttypes.h>
+	"OptiMouse.h"
+
+1442953861 source:c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\optimouse.cpp
+	<Arduino.h>
+	"OptiMouse.h"
+
+1447253409 c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\odoregisters.h
+	<math.h>
+	<stdint.h>
+
+1447253324 source:c:\mountwd\donnees\008_iao_wrk\voroboticsasso\00-projetsperso\009-asservdcmotor\01-maquettagefaisabilite\i2c\slave\odoregisters.cpp
+	"OdoRegisters.h"
+	<Arduino.h>
 
