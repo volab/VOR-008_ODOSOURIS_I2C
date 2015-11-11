@@ -72,13 +72,10 @@ void loop()
         //mesRegistres.serialPrintTrame();
             Serial.print("Tramesize : ");
             Serial.println( mesRegistres.getSize());
-            //int taille = mesRegistres.getSize();
+            int taille = mesRegistres.getSize();
             Serial.print ("Trame : ");
-            //for( int i; i<( taille ); i++ ){
-            //for( int i; i<( ODOREGISTERSSIZE); i++ ){
-            for( int i; i<( mesRegistres.getSize()); i++ ){
+            for( int i; i<( taille ); i++ ){
                 Serial.print (registres[i], HEX);
-                //Serial.print(i);
                 Serial.print(" ");
             }
             Serial.println(" End");
