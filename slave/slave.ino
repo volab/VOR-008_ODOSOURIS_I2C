@@ -70,14 +70,15 @@ void setup()
 
 void loop()
 {
-    *portAdd ^= pinBitMask;
-    //PORTB ^= (1<<0);
-    dxd += capteurDroit.dx();
-    dyd += capteurDroit.dy();
-    if (trameLue){
-        mesRegistres.setDataLong(DXDADD, dxd);
-        mesRegistres.setDataLong(DYDADD, dyd);
-        trameLue = false;
+    for(;;){
+        *portAdd ^= pinBitMask;
+        dxd += capteurDroit.dx();
+        dyd += capteurDroit.dy();
+        if (trameLue){
+            mesRegistres.setDataLong(DXDADD, dxd);
+            mesRegistres.setDataLong(DYDADD, dyd);
+            trameLue = false;
+        }
     }
 
 }
