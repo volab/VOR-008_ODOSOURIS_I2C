@@ -51,37 +51,16 @@ void setup()
 {
 	Serial.begin(115200);
     Serial.println("IIC Slave");
-	Wire.begin(0x05);
-	//Wire.onReceive(IIChandlerRec);
+	Wire.begin(mouseOdometerI2Cadd);
 	Wire.onRequest(requestEvent);
 	pinMode(13, OUTPUT);
-	//mesRegistres.serialPrintTrame();
 	registres = mesRegistres.getRegBankStartAdd();
-	Serial.println((unsigned int)(registres), HEX);
-	mesRegistres.serialPrintAdd();
 }
 
 void loop()
 {
     dxd += capteurDroit.dx();
     dyd += capteurDroit.dy();
-    //Mise au point
-    if (c++ & 0x80){
-        mesRegistres.setDataLong(DXDADD, dxd);
-        mesRegistres.setDataLong(DYDADD, dyd);
-        //mesRegistres.serialPrintTrame();
-            Serial.print("Tramesize : ");
-            Serial.println( mesRegistres.getSize());
-            int taille = mesRegistres.getSize();
-            Serial.print ("Trame : ");
-            for( int i; i<( taille ); i++ ){
-                Serial.print (registres[i], HEX);
-                Serial.print(" ");
-            }
-            Serial.println(" End");
-        c=0;
-    }
-
     if (trameLue){
         mesRegistres.setDataLong(DXDADD, dxd);
         mesRegistres.setDataLong(DYDADD, dyd);
@@ -91,6 +70,7 @@ void loop()
 }
 
 void requestEvent(void){
-        Wire.write(registres, sizeof(registres));
+        int taille = mesRegistres.getSize();
+        Wire.write(registres, taille);
         trameLue =  true;
 }
