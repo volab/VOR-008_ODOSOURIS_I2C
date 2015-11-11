@@ -14,9 +14,11 @@
 
 #define mouseOdometerI2Cadd 5 // totalement arbitraire
 #define LED 13
+#define DXDADD 1
 
 boolean newTrame=false;
 byte bufferIn[18];
+signed long dxd;
 
 byte i2c_read_trame( byte deviceaddress, byte *buffer, byte longueur){
     Wire.requestFrom(deviceaddress, longueur);
@@ -24,6 +26,18 @@ byte i2c_read_trame( byte deviceaddress, byte *buffer, byte longueur){
         if (Wire.available()) buffer[i] = Wire.read();
     }
     return longueur; // totalement inutile
+}
+
+signed long toSL(byte *buffer, uint8_t pos){
+    signed long data;
+    data = (signed long)buffer[pos]<<24;
+    data |= (signed long)buffer[pos+1] << 16 ;
+    data |= (signed long)buffer[pos+2] << 8 ;
+    data |= (signed long)buffer[pos+3] ;
+    Serial.print(buffer[pos],HEX);
+    Serial.print(buffer[pos+1],HEX);
+    Serial.print(buffer[pos+2], HEX);
+    Serial.println(buffer[pos+3],HEX);
 }
 
 void setup(){
@@ -48,7 +62,17 @@ void loop(){
             Serial.print(" - ");
         }
         Serial.println("fin de trame");
+        //dxd = toSL(bufferIn, DXDADD);
+    dxd = (signed long)bufferIn[DXDADD]<<24;
+    dxd |= (signed long)bufferIn[DXDADD+1] << 16 ;
+    dxd |= (signed long)bufferIn[DXDADD+2] << 8 ;
+    dxd |= (signed long)bufferIn[DXDADD+3] ;
+    float dx_float = (float)dxd*25.4/421.0;
+        Serial.print("Delta X = ");Serial.print(dx_float);Serial.print("mm");
     }
+
+
+
 }
 
 void serialEvent(){

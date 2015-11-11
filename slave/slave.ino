@@ -9,6 +9,7 @@
 #
 #*******************************************************************************
 # v0.1 premiere version stable avec juste une trame fixe
+* v0.2 version satble avec capteur optique réel
 */
 // Pour memoire
 //SDA A4
@@ -55,23 +56,21 @@ volatile uint8_t *portAdd;
 void setup()
 {
 	Serial.begin(115200);
-    Serial.println("IIC Slave");
 	Wire.begin(mouseOdometerI2Cadd);
 	Wire.onRequest(requestEvent);
-	pinMode(13, OUTPUT);
+
 	pinMode( INSTRUMPIN, OUTPUT);
 	registres = mesRegistres.getRegBankStartAdd();
 	portReg = digitalPinToPort(INSTRUMPIN);
 	portAdd = portOutputRegister(portReg);
-	Serial.print("Port de la pine 8 = ");Serial.println(portReg);
 	pinBitMask = digitalPinToBitMask(INSTRUMPIN);
-	Serial.print("bit de la pin 8 = ");Serial.println(pinBitMask);
+
 }
 
 void loop()
 {
     for(;;){
-        *portAdd ^= pinBitMask;
+        *portAdd ^= pinBitMask; //Instrumentation temps de cycle
         dxd += capteurDroit.dx();
         dyd += capteurDroit.dy();
         if (trameLue){
@@ -80,7 +79,6 @@ void loop()
             trameLue = false;
         }
     }
-
 }
 
 void requestEvent(void){

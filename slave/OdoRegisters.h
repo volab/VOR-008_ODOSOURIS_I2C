@@ -22,9 +22,8 @@ class odoRegisters{
         int getSize();
         void setDataLong(int add, signed long data);
         uint8_t getReg(int add);
-        void serialPrintTrame();
         uint8_t *getRegBankStartAdd();
-        void serialPrintAdd();
+        void serialPrintTrame();
     private:
 
         int _size;

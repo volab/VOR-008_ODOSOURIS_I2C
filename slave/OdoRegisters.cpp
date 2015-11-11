@@ -16,10 +16,11 @@ int odoRegisters::getSize(){
 }
 
 void odoRegisters::setDataLong(int add, signed long data){
-    _registerBank[add] = data >> 24;
+    _registerBank[add++] = data >> 24;;
     _registerBank[add++] = data >> 16;
     _registerBank[add++] = data >> 8;
     _registerBank[add++] = data & 0xff;
+
 }
 
 //Pour mise au point
@@ -29,11 +30,7 @@ void odoRegisters::serialPrintTrame(){
         Serial.print (_registerBank[i], HEX);
         Serial.print(" ");
     }
-    Serial.println(" End");
-}
-
-void odoRegisters::serialPrintAdd(){
-    Serial.println((unsigned int)(_registerBank), HEX);
+   Serial.println(" End");
 }
 
 uint8_t * odoRegisters::getRegBankStartAdd(){
