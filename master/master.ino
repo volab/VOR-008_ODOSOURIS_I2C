@@ -54,21 +54,21 @@ byte longLu = 18;
 
 void loop(){
     if (newTrame){
-        Serial.println("Trame transmise");
+//        Serial.println("Trame transmise");
         newTrame=false;
         octet = i2c_read_trame(mouseOdometerI2Cadd, bufferIn,longLu);
-        for ( int i=0; i< longLu; i++){
-            Serial.print( bufferIn[i], HEX);
-            Serial.print(" - ");
-        }
-        Serial.println("fin de trame");
+//        for ( int i=0; i< longLu; i++){
+//            Serial.print( bufferIn[i], HEX);
+//            Serial.print(" - ");
+//        }
+//        Serial.println("fin de trame");
         //dxd = toSL(bufferIn, DXDADD);
-    dxd = (signed long)bufferIn[DXDADD]<<24;
-    dxd |= (signed long)bufferIn[DXDADD+1] << 16 ;
-    dxd |= (signed long)bufferIn[DXDADD+2] << 8 ;
-    dxd |= (signed long)bufferIn[DXDADD+3] ;
-    float dx_float = (float)dxd*25.4/421.0;
-        Serial.print("Delta X = ");Serial.print(dx_float);Serial.print("mm");
+        dxd = (signed long)bufferIn[DXDADD]<<24;
+        dxd |= (signed long)bufferIn[DXDADD+1] << 16 ;
+        dxd |= (signed long)bufferIn[DXDADD+2] << 8 ;
+        dxd |= (signed long)bufferIn[DXDADD+3] ;
+        float dx_float = (float)dxd*25.4/421.0;
+        Serial.print("Delta X = ");Serial.println(abs(dx_float));//Serial.print("mm");
     }
 
 
@@ -76,7 +76,7 @@ void loop(){
 }
 
 void serialEvent(){
-    Serial.println("dans serialEvent");
+    //Serial.println("dans serialEvent");
     digitalWrite(LED, !digitalRead(LED));
     newTrame = true;
     Serial.read();

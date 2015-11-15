@@ -58,7 +58,7 @@ void setup()
 	Serial.begin(115200);
 	Wire.begin(mouseOdometerI2Cadd);
 	Wire.onRequest(requestEvent);
-
+    Serial.println("IIC SLAVE mouse odocaptor");
 	pinMode( INSTRUMPIN, OUTPUT);
 	registres = mesRegistres.getRegBankStartAdd();
 	portReg = digitalPinToPort(INSTRUMPIN);
@@ -76,6 +76,8 @@ void loop()
         if (trameLue){
             mesRegistres.setDataLong(DXDADD, dxd);
             mesRegistres.setDataLong(DYDADD, dyd);
+            dxd = 0;
+            dyd = 0;
             trameLue = false;
         }
     }
@@ -84,5 +86,6 @@ void loop()
 void requestEvent(void){
         int taille = mesRegistres.getSize();
         Wire.write(registres, taille);
+
         trameLue =  true;
 }
